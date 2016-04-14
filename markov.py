@@ -3,6 +3,12 @@ import sys
 from random import choice
 import twitter
 
+api = twitter.Api(consumer_key=os.environ['TWITTER_CONSUMER_KEY'],
+                      consumer_secret=os.environ['TWITTER_CONSUMER_SECRET'],
+                      access_token_key=os.environ['TWITTER_ACCESS_TOKEN_KEY'],
+                      access_token_secret=os.environ['TWITTER_ACCESS_TOKEN_SECRET'])
+
+print api.VerifyCredentials()
 
 def open_and_read_file(filenames):
     """Given a list of files, open them, read the text, and return one long
@@ -77,3 +83,5 @@ chains = make_chains(text)
 
 # Your task is to write a new function tweet, that will take chains as input
 # tweet(chains)
+status = api.PostUpdate("we are testing!!!")
+print status.text
